@@ -1,8 +1,8 @@
 wireworld{
 	estados{
-		Space " ";
-		Spark "#";
-		Tail "-";
+		Space " "; 
+		Spark "#"; 
+		Tail "-"; 
 		Wire "=";
 	}; 
 	transiciones{
