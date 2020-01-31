@@ -16,9 +16,9 @@ public class SapphiraParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		KEY_LEFT=1, KEY_RIGHT=2, COLON=3, STATES=4, TRANS=5, DE=6, A=7, CUANDO=8, 
-		NO=9, VERDADERO=10, FALSO=11, Y=12, O=13, XOR=14, SIMULAR=15, CONF=16, 
-		NUM=17, STRING=18, ID=19, LINE_COMMENT=20, EOL=21, WS=22;
+		KEY_LEFT=1, KEY_RIGHT=2, COLON=3, DOT=4, STATES=5, TRANS=6, DE=7, A=8, 
+		CUANDO=9, NO=10, VERDADERO=11, FALSO=12, Y=13, O=14, XOR=15, SIMULAR=16, 
+		CONF=17, NUM=18, STRING=19, ID=20, LINE_COMMENT=21, EOL=22, WS=23;
 	public static final int
 		RULE_s = 0, RULE_program_block = 1, RULE_state_block = 2, RULE_state_declr = 3, 
 		RULE_trans_block = 4, RULE_trans_declr = 5, RULE_cuant_state = 6, RULE_expr = 7, 
@@ -29,14 +29,14 @@ public class SapphiraParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'{'", "'}'", "';'", "'estados'", "'transiciones'", "'de'", "'a'", 
-		"'cuando'", "'no'", "'verdadero'", "'falso'", "'y'", "'o'", "'xor'", "'simular'", 
-		"'conf'"
+		null, "'{'", "'}'", "';'", "'.'", "'estados'", "'transiciones'", "'de'", 
+		"'a'", "'cuando'", "'no'", "'verdadero'", "'falso'", "'y'", "'o'", "'xor'", 
+		"'simular'", "'conf'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "KEY_LEFT", "KEY_RIGHT", "COLON", "STATES", "TRANS", "DE", "A", 
-		"CUANDO", "NO", "VERDADERO", "FALSO", "Y", "O", "XOR", "SIMULAR", "CONF", 
-		"NUM", "STRING", "ID", "LINE_COMMENT", "EOL", "WS"
+		null, "KEY_LEFT", "KEY_RIGHT", "COLON", "DOT", "STATES", "TRANS", "DE", 
+		"A", "CUANDO", "NO", "VERDADERO", "FALSO", "Y", "O", "XOR", "SIMULAR", 
+		"CONF", "NUM", "STRING", "ID", "LINE_COMMENT", "EOL", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -332,6 +332,7 @@ public class SapphiraParser extends Parser {
 		}
 		public TerminalNode A() { return getToken(SapphiraParser.A, 0); }
 		public TerminalNode COLON() { return getToken(SapphiraParser.COLON, 0); }
+		public TerminalNode DOT() { return getToken(SapphiraParser.DOT, 0); }
 		public TerminalNode CUANDO() { return getToken(SapphiraParser.CUANDO, 0); }
 		public List<Cuant_stateContext> cuant_state() {
 			return getRuleContexts(Cuant_stateContext.class);
@@ -380,7 +381,15 @@ public class SapphiraParser extends Parser {
 			}
 
 			setState(71);
-			match(COLON);
+			_la = _input.LA(1);
+			if ( !(_la==COLON || _la==DOT) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -660,29 +669,30 @@ public class SapphiraParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30f\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31f\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\7\4"+
 		"(\n\4\f\4\16\4+\13\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\7\6\67\n"+
 		"\6\f\6\16\6:\13\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7"+
 		"H\n\7\3\7\3\7\3\b\3\b\3\b\3\t\3\t\5\tQ\n\t\7\tS\n\t\f\t\16\tV\13\t\3\n"+
 		"\3\n\5\nZ\n\n\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\2\2\16\2\4"+
-		"\6\b\n\f\16\20\22\24\26\30\2\4\3\2\f\r\3\2\16\20\2_\2\32\3\2\2\2\4\35"+
-		"\3\2\2\2\6$\3\2\2\2\b/\3\2\2\2\n\63\3\2\2\2\f>\3\2\2\2\16K\3\2\2\2\20"+
-		"T\3\2\2\2\22Y\3\2\2\2\24[\3\2\2\2\26]\3\2\2\2\30_\3\2\2\2\32\33\5\4\3"+
-		"\2\33\34\5\30\r\2\34\3\3\2\2\2\35\36\7\25\2\2\36\37\7\3\2\2\37 \5\6\4"+
-		"\2 !\5\n\6\2!\"\7\4\2\2\"#\7\5\2\2#\5\3\2\2\2$%\7\6\2\2%)\7\3\2\2&(\5"+
-		"\b\5\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*,\3\2\2\2+)\3\2\2\2,"+
-		"-\7\4\2\2-.\7\5\2\2.\7\3\2\2\2/\60\7\25\2\2\60\61\7\24\2\2\61\62\7\5\2"+
-		"\2\62\t\3\2\2\2\63\64\7\7\2\2\648\7\3\2\2\65\67\5\f\7\2\66\65\3\2\2\2"+
-		"\67:\3\2\2\28\66\3\2\2\289\3\2\2\29;\3\2\2\2:8\3\2\2\2;<\7\4\2\2<=\7\5"+
-		"\2\2=\13\3\2\2\2>?\7\b\2\2?@\7\25\2\2@A\7\t\2\2AG\7\25\2\2BC\7\n\2\2C"+
-		"D\5\16\b\2DE\5\20\t\2EF\5\16\b\2FH\3\2\2\2GB\3\2\2\2GH\3\2\2\2HI\3\2\2"+
-		"\2IJ\7\5\2\2J\r\3\2\2\2KL\7\23\2\2LM\7\25\2\2M\17\3\2\2\2NP\5\26\f\2O"+
-		"Q\5\22\n\2PO\3\2\2\2PQ\3\2\2\2QS\3\2\2\2RN\3\2\2\2SV\3\2\2\2TR\3\2\2\2"+
-		"TU\3\2\2\2U\21\3\2\2\2VT\3\2\2\2WZ\7\13\2\2XZ\5\24\13\2YW\3\2\2\2YX\3"+
-		"\2\2\2Z\23\3\2\2\2[\\\t\2\2\2\\\25\3\2\2\2]^\t\3\2\2^\27\3\2\2\2_`\7\21"+
-		"\2\2`a\7\25\2\2ab\7\22\2\2bc\7\25\2\2cd\7\5\2\2d\31\3\2\2\2\b)8GPTY";
+		"\6\b\n\f\16\20\22\24\26\30\2\5\3\2\5\6\3\2\r\16\3\2\17\21\2_\2\32\3\2"+
+		"\2\2\4\35\3\2\2\2\6$\3\2\2\2\b/\3\2\2\2\n\63\3\2\2\2\f>\3\2\2\2\16K\3"+
+		"\2\2\2\20T\3\2\2\2\22Y\3\2\2\2\24[\3\2\2\2\26]\3\2\2\2\30_\3\2\2\2\32"+
+		"\33\5\4\3\2\33\34\5\30\r\2\34\3\3\2\2\2\35\36\7\26\2\2\36\37\7\3\2\2\37"+
+		" \5\6\4\2 !\5\n\6\2!\"\7\4\2\2\"#\7\5\2\2#\5\3\2\2\2$%\7\7\2\2%)\7\3\2"+
+		"\2&(\5\b\5\2\'&\3\2\2\2(+\3\2\2\2)\'\3\2\2\2)*\3\2\2\2*,\3\2\2\2+)\3\2"+
+		"\2\2,-\7\4\2\2-.\7\5\2\2.\7\3\2\2\2/\60\7\26\2\2\60\61\7\25\2\2\61\62"+
+		"\7\5\2\2\62\t\3\2\2\2\63\64\7\b\2\2\648\7\3\2\2\65\67\5\f\7\2\66\65\3"+
+		"\2\2\2\67:\3\2\2\28\66\3\2\2\289\3\2\2\29;\3\2\2\2:8\3\2\2\2;<\7\4\2\2"+
+		"<=\7\5\2\2=\13\3\2\2\2>?\7\t\2\2?@\7\26\2\2@A\7\n\2\2AG\7\26\2\2BC\7\13"+
+		"\2\2CD\5\16\b\2DE\5\20\t\2EF\5\16\b\2FH\3\2\2\2GB\3\2\2\2GH\3\2\2\2HI"+
+		"\3\2\2\2IJ\t\2\2\2J\r\3\2\2\2KL\7\24\2\2LM\7\26\2\2M\17\3\2\2\2NP\5\26"+
+		"\f\2OQ\5\22\n\2PO\3\2\2\2PQ\3\2\2\2QS\3\2\2\2RN\3\2\2\2SV\3\2\2\2TR\3"+
+		"\2\2\2TU\3\2\2\2U\21\3\2\2\2VT\3\2\2\2WZ\7\f\2\2XZ\5\24\13\2YW\3\2\2\2"+
+		"YX\3\2\2\2Z\23\3\2\2\2[\\\t\3\2\2\\\25\3\2\2\2]^\t\4\2\2^\27\3\2\2\2_"+
+		"`\7\22\2\2`a\7\26\2\2ab\7\23\2\2bc\7\26\2\2cd\7\5\2\2d\31\3\2\2\2\b)8"+
+		"GPTY";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

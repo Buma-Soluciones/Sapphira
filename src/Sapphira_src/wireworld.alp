@@ -1,0 +1,4 @@
+state Space " " ;
+state Spark "#" to Tail ;
+state Tail "-" to Wire ;
+state Wire "=" to Spark  when 1 Spark and not 3 Spark.

@@ -5,7 +5,7 @@ program_block : ID KEY_LEFT state_block trans_block KEY_RIGHT COLON;
 state_block : STATES KEY_LEFT state_declr* KEY_RIGHT COLON;
 state_declr : ID STRING COLON;
 trans_block : TRANS KEY_LEFT trans_declr* KEY_RIGHT COLON;
-trans_declr : DE ID A ID (CUANDO cuant_state expr cuant_state)? COLON;
+trans_declr : DE ID A ID (CUANDO cuant_state expr cuant_state)? (COLON | DOT);
 cuant_state : NUM ID;
 expr : (logic_expr term?)*;
 term : NO
@@ -22,6 +22,7 @@ simulation_block : SIMULAR ID CONF ID COLON;
 KEY_LEFT : '{';
 KEY_RIGHT : '}';
 COLON : ';';
+DOT : '.';
 STATES : 'estados';
 TRANS : 'transiciones';
 DE : 'de';
