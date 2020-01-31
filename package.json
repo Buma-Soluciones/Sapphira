@@ -43,7 +43,13 @@
                 "uiTheme": "vs-dark",
                 "path": "./themes/sapphira-color-theme.json"
             }
-        ]
+		],
+		"snippets": [
+            {
+                "language": "sp",
+                "path": "./snippets/sapphira-snippets.json"
+            }
+        ],
 	},
 	"scripts": {
 		"test": "node ./test/runTest.js"

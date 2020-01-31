@@ -1,0 +1,9 @@
+{
+    "simular": {
+        "prefix": "simular",
+        "body": [
+            "simular ${1:id} conf ${2:configuracion}"
+        ],
+        "description": "Code snippet for an simular statement"
+    }
+}
