@@ -1,0 +1,59 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "scopeName": "source.sp",
+    "patterns": [
+        {
+            "explanation": "Line continuation",
+            "match": "\\s*\\\\s*$",
+            "name": "constant.character.escape"
+        },
+        {
+            "match": "#.*",
+            "name": "comment.line"
+        },
+        {
+            "begin": "'",
+            "end": "'",
+            "name": "string.quoted.single"
+        },
+        {
+            "begin": "\"",
+            "end": "\"",
+            "name": "string.quoted.double"
+        },
+        {
+            "match": "\\s*\\b(estados|transiciones|cuando|simular|conf)\\b",
+            "name": "keyword"
+        },
+        {
+            "match": "\\s*\\b(de|a)\\b",
+            "name": "keyword.transicion"
+        },
+        {
+            "match": "\\s*\\b(verdadero|falso)\\b",
+            "name": "keyword.bool"
+        },
+        {
+            "match": "\\s*\\d",
+            "name": "constant.numeric"
+        },
+        {
+            "explanation": "project name",
+            "match": "^\\s*([A-Za-z0-9][A-Za-z0-9._-]*[A-Za-z0-9]|[A-Za-z0-9])",
+            "captures": {
+                "1": {
+                    "name": "entity.name.class"
+                }
+            }
+        },
+        {
+            "explanation": "extras",
+            "match": "\\[([^\\]]+)\\]",
+            "captures": {
+                "1": {
+                    "name": "entity.name.tag"
+                }
+            }
+        }
+    ]
+}

@@ -31,7 +31,7 @@
 			{
 			  "language": "sp",
 			  "scopeName": "source.sp",
-			  "path": "./syntaxes/sapphira.tmLanguage.json",
+			  "path": "./syntaxes/sapphira.tmLanguage2.json",
 			  "embeddedLanguages": {
 				"meta.embedded.block.javascript": "javascript"
 			  }

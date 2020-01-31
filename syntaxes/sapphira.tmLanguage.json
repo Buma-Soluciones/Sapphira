@@ -3,7 +3,12 @@
 	"patterns": [{ "include": "#expression" }],
 	"repository": {
 	  "expression": {
-		"patterns": [{ "include": "#letter" }, { "include": "#paren-expression" }]
+		"patterns": [{ "include": "#letter" }, { "include": "#comment" }, { "include": "#paren-expression" }]
+	  },
+	  "comment": {
+		"name": "comment",
+		"begin": "\\#",
+		"end": "\n"
 	  },
 	  "letter": {
 		"match": "a|b|c",
