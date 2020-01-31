@@ -2,7 +2,7 @@
 	"name": "sapphira",
 	"displayName": "Sapphira",
 	"description": "",
-	"version": "0.0.2",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
@@ -49,7 +49,7 @@
                 "language": "sp",
                 "path": "./snippets/sapphira-snippets.json"
             }
-        ],
+        ]
 	},
 	"scripts": {
 		"test": "node ./test/runTest.js"
