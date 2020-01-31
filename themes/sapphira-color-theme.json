@@ -55,5 +55,13 @@
 		  "foreground": "#e5bd46"
 		}
 	  },
+	  //---------- Variable ----------
+	  {
+		"name": "Generic variable",
+		"scope": "variable",
+		"settings": {
+		  "foreground": "#70d49e"
+		}
+	  },
 	]
   }

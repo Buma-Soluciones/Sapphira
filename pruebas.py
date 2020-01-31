@@ -8,6 +8,9 @@ if __name__ == "__main__":
     for i in range():
         print(i + " hello")
 
+    if 2 > pi and pi == pi:
+        pass
+
     cmd = "echo"
     list = [1, 2, "3"]
     while True:
