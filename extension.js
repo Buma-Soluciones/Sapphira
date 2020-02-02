@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const { exec } = require('child_process');
+const path = require('path');
 const trad = require('./src/Sapphira_src/Translator').Translator
 
 // this method is called when your extension is activated
@@ -18,10 +19,10 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "sapphira" is now active!');
 
-	let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
-	let folderPathSplit = folderPath.split("\\")
-	let userPath = folderPathSplit.slice(0,4).join("\\")
-	let folder = userPath + "\\Sapphira\\src\\Alpaca_src\\eg\\life\\eg";
+	let folderPath = path.dirname(__filename); // get the open folder path
+	let folderPathSplit = folderPath.split("Sapphira")
+	let userPath = folderPathSplit[0]
+	let folder = userPath + "Sapphira\\src\\Alpaca_src\\eg\\life\\eg";
 
 	let files = []
 	fs.readdirSync(folder).forEach(file => {
@@ -58,22 +59,22 @@ function activate(context) {
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
 		const terminal = vscode.window.createTerminal(`Sapphira Terminal #${NEXT_TERM_ID++}`);
 		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
-		let folderPathSplit = folderPath.split("\\")
-		let userPath = folderPathSplit.slice(0,4).join("\\")
-		let copyPath = userPath + "\\Sapphira\\src\\Sapphira_src\\life.sp"
+		let folderPathSplit = path.dirname(__filename).split("Sapphira")
+		let userPath = folderPathSplit[0]
+		let copyPath = userPath + "Sapphira\\src\\Sapphira_src\\life.sp"
 		console.log('folderPath :', folderPath);
 		fs.copyFile(folderPath, copyPath, (err) => {
 			if (err) throw err;
 			console.log('source.txt was copied to destination.txt');
 
 		  });
-		  let command = exec('cd ' + '"' + userPath + "\\Sapphira\\src\\Sapphira_src\\" + '"' + '&& node index.js');
+		  let command = exec('cd ' + '"' + userPath + "Sapphira\\src\\Sapphira_src\\" + '"' + '&& node index.js');
 		  // let command = exec('cd');
 
 		  
 		  command.stdout.on("data", data => {
 			  console.log(`Todo bien: ${data}`);
-			  terminal.sendText(`cd \"${userPath}\\Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
+			  terminal.sendText(`cd \"${userPath}Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
 			  terminal.show(true)
 		  });
 		  

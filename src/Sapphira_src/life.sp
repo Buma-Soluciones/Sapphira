@@ -9,4 +9,4 @@ life {
 	};
 };
 
-simular life conf newgun;
+simular life conf acorn

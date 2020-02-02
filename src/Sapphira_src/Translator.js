@@ -107,8 +107,8 @@ class Translator extends SapphiraListener {
           });
         var scriptName = "'" + path.dirname(__filename) + '\\' + this.file_name + "'";
         var simulation_file = ctx.ID(1).getText() + "." + ctx.ID(0).getText()
-        var pathing_spit = scriptName.split("\\")
-        var pathing = pathing_spit.slice(0,4).join("\\") + "\\Sapphira\\src\\Alpaca_src\\eg\\" + ctx.ID(0).getText() + "\\eg\\" + simulation_file + "'"
+        var pathing_spit = scriptName.split("Sapphira")
+        var pathing = pathing_spit[0] + "Sapphira\\src\\Alpaca_src\\eg\\" + ctx.ID(0).getText() + "\\eg\\" + simulation_file + "'"
         this.simulation_trans = "python2 alpaca -i " + pathing + " " + scriptName
         console.log(this.simulation_trans)
 
