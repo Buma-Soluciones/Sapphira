@@ -49,7 +49,7 @@ function activate(context) {
 		vscode.window.showInformationMessage('Hello World 2!');
 	}));
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
-		const terminal = vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
+		const terminal = vscode.window.createTerminal(`Sapphira Terminal #${NEXT_TERM_ID++}`);
 		//terminal.sendText("python");
 		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
 		let folderPathSplit = folderPath.split("\\")
@@ -68,6 +68,7 @@ function activate(context) {
 		  command.stdout.on("data", data => {
 			  console.log(`Todo bien: ${data}`);
 			  terminal.sendText(`cd \"${userPath}\\Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
+			  terminal.show(true)
 		  });
 		  
 		  
