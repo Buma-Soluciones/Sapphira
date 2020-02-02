@@ -52,19 +52,22 @@ function activate(context) {
 		const terminal = vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
 		//terminal.sendText("python");
 		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
+		let folderPathSplit = folderPath.split("\\")
+		let userPath = folderPathSplit.slice(0,4).join("\\")
+		let copyPath = userPath + "\\Sapphira\\src\\Sapphira_src\\life.sp"
 		console.log('folderPath :', folderPath);
-		fs.copyFile(folderPath, 'C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Sapphira_src\\life.sp', (err) => {
+		fs.copyFile(folderPath, copyPath, (err) => {
 			if (err) throw err;
 			console.log('source.txt was copied to destination.txt');
 
 		  });
-		  let command = exec('cd \"C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Sapphira_src\\\" && node index.js');
+		  let command = exec('cd ' + '"' + userPath + "\\Sapphira\\src\\Sapphira_src\\" + '"' + '&& node index.js');
 		  // let command = exec('cd');
 
 		  
 		  command.stdout.on("data", data => {
 			  console.log(`Todo bien: ${data}`);
-			  terminal.sendText(`cd \"C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
+			  terminal.sendText(`cd \"${userPath}\\Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
 		  });
 		  
 		  
