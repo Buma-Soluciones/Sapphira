@@ -1,0 +1,67 @@
+{
+	"name": "SapphiraDark",
+	"settings": [{
+		// Only settings supported by VS code.
+		"settings": {
+		  "lineHighlight": "#FFFFFF2A",
+		  "foreground": "#E0E0D0"
+		}
+	  },  
+	  // Comments
+	  {
+		"name": "Generic comment + line/block defaults",
+		"scope": "comment, comment.line, comment.block",
+		"settings": {
+		  "foreground": "#2b83cb"
+		}
+	  },
+	  //---------- Keyword ----------
+	  {
+		"name": "Generic Keyword",
+		"scope": "keyword",
+		"settings": {
+		  "fontStyle": "bold",
+		  "foreground": "#78a6a6"
+		}
+	  },
+	  {
+		"name": "Keyword para transicion (de, a)",
+		"scope": "keyword.transicion",
+		"settings": {
+		  "fontStyle": "bold",
+		  "foreground": "#7a7297"
+		}
+	  },
+	  {
+		"name": "keyword boolean",
+		"scope": "keyword.bool",
+		"settings": {
+		  "fontStyle": "bold",
+		  "foreground": "#c5914e"
+		}
+	  },
+	  {
+		"name": "Generic constant + numeric",
+		"scope": "constant, constant.numeric",
+		"settings": {
+		  "foreground": "#e59337" 
+		}
+	  },
+	  //---------- String ----------
+	  {
+		"name": "Generic string",
+		"scope": "string",
+		"settings": {
+		  "foreground": "#e5bd46"
+		}
+	  },
+	  //---------- Variable ----------
+	  {
+		"name": "Generic variable",
+		"scope": "variable",
+		"settings": {
+		  "foreground": "#70d49e"
+		}
+	  },
+	]
+  }

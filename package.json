@@ -2,24 +2,65 @@
 	"name": "sapphira",
 	"displayName": "Sapphira",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.2.2",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages",
+		"Snippets"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.helloWorld",
+		"onCommand:terminalTest.createAndSend",
+		"onCommand:terminalTest.createTerminal"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"title": "Sapphira: Hello World"
+			},
+			{
+				"command": "terminalTest.createAndSend",
+				"title": "Sapphira: Create Terminal and Immediately Send"
+			},
+			{
+				"command": "terminalTest.createTerminal",
+				"title": "Sapphira: Create Terminal"
 			}
-		]
+		],
+		"languages": [
+			{
+			  "id": "sp",
+			  "extensions": [".sp"],
+			  "configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+			  "language": "sp",
+			  "scopeName": "source.sp",
+			  "path": "./syntaxes/sapphira.tmLanguage2.json",
+			  "embeddedLanguages": {
+				"meta.embedded.block.javascript": "javascript"
+			  }
+			}
+		],
+		"themes": [
+            {
+                "label": "SapphiraDark",
+                "uiTheme": "vs-dark",
+                "path": "./themes/sapphira-color-theme.json"
+            }
+		],
+		"snippets": [
+            {
+                "language": "sp",
+                "path": "./snippets/sapphira-snippets.json"
+            }
+        ]
 	},
 	"scripts": {
 		"test": "node ./test/runTest.js"

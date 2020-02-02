@@ -1,0 +1,30 @@
+{
+	"scopeName": "source.sp",
+	"patterns": [{ "include": "#expression" }],
+	"repository": {
+	  "expression": {
+		"patterns": [{ "include": "#letter" }, { "include": "#comment" }, { "include": "#paren-expression" }]
+	  },
+	  "comment": {
+		"name": "comment",
+		"begin": "\\#",
+		"end": "\n"
+	  },
+	  "letter": {
+		"match": "a|b|c",
+		"name": "keyword.letter"
+	  },
+	  "paren-expression": {
+		"begin": "\\(",
+		"end": "\\)",
+		"beginCaptures": {
+		  "0": { "name": "punctuation.paren.open" }
+		},
+		"endCaptures": {
+		  "0": { "name": "punctuation.paren.close" }
+		},
+		"name": "expression.group",
+		"patterns": [{ "include": "#expression" }]
+	  }
+	}
+  }
