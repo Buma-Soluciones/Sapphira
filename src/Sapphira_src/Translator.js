@@ -1,5 +1,6 @@
 const SapphiraListener = require('./SapphiraListener').SapphiraListener;
 const fs = require('fs');
+const path = require('path')
 class Translator extends SapphiraListener {
 
     table = []
@@ -85,7 +86,7 @@ class Translator extends SapphiraListener {
         //console.log(this.table);
     }
     enterSimulation_block(ctx){
-        var text
+        var text = ""
         for(var i = 0; i < this.table.length; i++){
            
                 if(!this.table[i]["trans"]){
@@ -103,6 +104,9 @@ class Translator extends SapphiraListener {
             if (err) throw err;
             console.log('File is created successfully.');
           });
+       
+        var aux_string = "phyton2 alpaca -i " + ctx.ID(1).getText() + " " + ctx.ID(0).getText()
+        console.log(aux_string)
 
 
     }

@@ -1,0 +1,2 @@
+state Muerto " " to Vivo  when 3 Vivo and  5 Muerto;
+state Vivo "*" to Muerto  when 4 Vivo or  7 Muerto.

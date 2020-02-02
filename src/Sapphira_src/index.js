@@ -6,7 +6,7 @@ var SapphiraVisitor = require('./SapphiraVisitor').SapphiraVisitor;
 var Translator = require('./Translator').Translator;
 
 const fs = require('fs');
-var text = fs.readFileSync('wireworld.sp','utf8')
+var text = fs.readFileSync('life.sp','utf8')
 console.log (text)
 var auxInput = text;
 var input = auxInput
