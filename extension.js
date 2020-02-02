@@ -18,6 +18,16 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "sapphira" is now active!');
 
+		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
+	let folderPathSplit = folderPath.split("\\")
+	let userPath = folderPathSplit.slice(0,4).join("\\")
+	let folder = userPath + "\\Sapphira\\src\\Alpaca_src\\eg\\life\\eg";
+
+	let files = []
+	fs.readdirSync(folder).forEach(file => {
+		files.push(file.slice(0,-5))
+	});
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
@@ -41,13 +51,12 @@ function activate(context) {
 
 	// vscode.window.createTerminal
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createTerminal', () => {
-		vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
+		vscode.window.createTerminal(`Sapphira Terminal #${NEXT_TERM_ID++}`);
 		vscode.window.showInformationMessage('Hello World 2!');
 	}));
-	
+
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
 		const terminal = vscode.window.createTerminal(`Sapphira Terminal #${NEXT_TERM_ID++}`);
-		//terminal.sendText("python");
 		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
 		let folderPathSplit = folderPath.split("\\")
 		let userPath = folderPathSplit.slice(0,4).join("\\")
@@ -80,9 +89,47 @@ function activate(context) {
 		  command.on("close", code => {
 			  console.log(`child process exited with code ${code}`);
 		  });
-		  
 		
 	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.viewConfiguration', async () => {
+		let what = await vscode.window.showInputBox({ placeHolder: 'Cual configuracion quieres ver?' });
+		if (what) {
+			console.log('what:', what);
+			console.log('folder :', folder);
+			let terminal = vscode.window.createTerminal(`Configuracion: ${what}`);
+			terminal.sendText(`cd \"${folder}\"`);
+			terminal.sendText(`cat \"${what}.life\"`);
+			terminal.show(true)
+		}	
+
+		
+	}));
+
+	const provider2 = vscode.languages.registerCompletionItemProvider(
+		'sp',
+		{
+			provideCompletionItems(document, position) {
+
+				// get all text until the `position` and check if it reads `console.`
+				// and if so then complete if `log`, `warn`, and `error`
+				let linePrefix = document.lineAt(position).text.substr(0, position.character);
+				if (!linePrefix.endsWith('conf ')) {
+					return undefined;
+				}
+				
+				let items = []
+				files.forEach(filename => {
+					items.push(new vscode.CompletionItem(filename, vscode.CompletionItemKind.Method))
+				});
+
+				return items;
+			}
+		},
+		' ' // triggered whenever a ' ' is being typed
+	);
+
+	context.subscriptions.push(provider2);
 
 	context.subscriptions.push(disposable);
 }

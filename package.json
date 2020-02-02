@@ -2,7 +2,7 @@
 	"name": "sapphira",
 	"displayName": "Sapphira",
 	"description": "",
-	"version": "0.4.20",
+	"version": "0.5.5",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
@@ -13,7 +13,8 @@
 	],
 	"activationEvents": [
 		"onCommand:extension.helloWorld",
-		"onCommand:terminalTest.createAndSend"
+		"onCommand:terminalTest.createAndSend",
+		"onCommand:terminalTest.viewConfiguration"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -25,6 +26,10 @@
 			{
 				"command": "terminalTest.createAndSend",
 				"title": "Sapphira: Crear simulacion"
+			},
+			{
+				"command": "terminalTest.viewConfiguration",
+				"title": "Sapphira: Mostrar configuracion"
 			}
 		],
 		"languages": [
