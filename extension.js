@@ -1,6 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const fs = require('fs');
+const { exec } = require('child_process');
+const trad = require('./src/Sapphira_src/Translator').Translator
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -47,9 +50,37 @@ function activate(context) {
 	}));
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
 		const terminal = vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
-		terminal.sendText("python");
-		let folderPath = vscode.workspace.rootPath; // get the open folder path
+		//terminal.sendText("python");
+		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
 		console.log('folderPath :', folderPath);
+		fs.copyFile(folderPath, 'C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Sapphira_src\\life.sp', (err) => {
+			if (err) throw err;
+			console.log('source.txt was copied to destination.txt');
+
+		  });
+		  let command = exec('cd \"C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Sapphira_src\\\" && node index.js');
+		  // let command = exec('cd');
+
+		  
+		  command.stdout.on("data", data => {
+			  console.log(`Todo bien: ${data}`);
+			  terminal.sendText(`cd \"C:\\Users\\Multi x64\\Documents\\Sapphira\\src\\Alpaca_src\\bin\" | ${data}`);
+		  });
+		  
+		  
+		  command.stderr.on("data", data => {
+			  console.log(`stderr: ${data}`);
+		  });
+		  
+		  command.on('error', (error) => {
+			  console.log(`error: ${error.message}`);
+		  });
+		  
+		  command.on("close", code => {
+			  console.log(`child process exited with code ${code}`);
+		  });
+		  
+		
 	}));
 
 	context.subscriptions.push(disposable);

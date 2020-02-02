@@ -5,6 +5,7 @@ class Translator extends SapphiraListener {
 
     table = []
     file_name
+    simulation_trans
     constructor() {
         super();
         return this;
@@ -102,11 +103,14 @@ class Translator extends SapphiraListener {
         }
         fs.writeFileSync(this.file_name, text,function (err) {
             if (err) throw err;
-            console.log('File is created successfully.');
+            //console.log('File is created successfully.');
           });
-       
-        var aux_string = "phyton2 alpaca -i " + ctx.ID(1).getText() + " " + ctx.ID(0).getText()
-        console.log(aux_string)
+        var scriptName = "'" + path.dirname(__filename) + '\\' + this.file_name + "'";
+        var simulation_file = ctx.ID(1).getText() + "." + ctx.ID(0).getText()
+        var pathing_spit = scriptName.split("\\")
+        var pathing = pathing_spit.slice(0,4).join("\\") + "\\Sapphira\\src\\Alpaca_src\\eg\\" + ctx.ID(0).getText() + "\\eg\\" + simulation_file + "'"
+        this.simulation_trans = "python2 alpaca -i " + pathing + " " + scriptName
+        console.log(this.simulation_trans)
 
 
     }

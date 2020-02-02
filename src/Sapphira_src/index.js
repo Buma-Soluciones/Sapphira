@@ -7,7 +7,7 @@ var Translator = require('./Translator').Translator;
 
 const fs = require('fs');
 var text = fs.readFileSync('life.sp','utf8')
-console.log (text)
+//console.log (text)
 var auxInput = text;
 var input = auxInput
 var chars = new antlr4.InputStream(input);
@@ -16,7 +16,7 @@ var tokens  = new antlr4.CommonTokenStream(lexer);
 var parser = new SapphiraParser(tokens);
 parser.buildParseTrees = true;
 var tree = parser.s();
-console.log(tree.toStringTree(parser.ruleNames));
+//console.log(tree.toStringTree(parser.ruleNames));
 
 var walker = new Translator()
 antlr4.tree.ParseTreeWalker.DEFAULT.walk(walker, tree);
