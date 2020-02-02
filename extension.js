@@ -33,9 +33,6 @@ function activate(context) {
 	vscode.window.onDidOpenTerminal(terminal => {
 		console.log("Terminal opened. Total count: " + vscode.window.terminals.length);
 	});
-	vscode.window.onDidOpenTerminal((terminal) => {
-		vscode.window.showInformationMessage(`onDidOpenTerminal, name: ${terminal.name}`);
-	});
 
 	// vscode.window.onDidChangeActiveTerminal
 	vscode.window.onDidChangeActiveTerminal(e => {
@@ -43,11 +40,11 @@ function activate(context) {
 	});
 
 	// vscode.window.createTerminal
-	// Falta crear el comando createTerminal
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createTerminal', () => {
 		vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
 		vscode.window.showInformationMessage('Hello World 2!');
 	}));
+	
 	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
 		const terminal = vscode.window.createTerminal(`Sapphira Terminal #${NEXT_TERM_ID++}`);
 		//terminal.sendText("python");

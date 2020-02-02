@@ -9,4 +9,4 @@ life {
 	};
 };
 
-simular life conf piston;
+simular life conf newgun;
