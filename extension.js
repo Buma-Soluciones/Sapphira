@@ -18,7 +18,7 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "sapphira" is now active!');
 
-		let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
+	let folderPath = vscode.window.activeTextEditor.document.fileName; // get the open folder path
 	let folderPathSplit = folderPath.split("\\")
 	let userPath = folderPathSplit.slice(0,4).join("\\")
 	let folder = userPath + "\\Sapphira\\src\\Alpaca_src\\eg\\life\\eg";
