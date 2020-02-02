@@ -45,6 +45,12 @@ function activate(context) {
 		vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
 		vscode.window.showInformationMessage('Hello World 2!');
 	}));
+	context.subscriptions.push(vscode.commands.registerCommand('terminalTest.createAndSend', () => {
+		const terminal = vscode.window.createTerminal(`Ext Terminal #${NEXT_TERM_ID++}`);
+		terminal.sendText("python");
+		let folderPath = vscode.workspace.rootPath; // get the open folder path
+		console.log('folderPath :', folderPath);
+	}));
 
 	context.subscriptions.push(disposable);
 }

@@ -2,22 +2,33 @@
 	"name": "sapphira",
 	"displayName": "Sapphira",
 	"description": "",
-	"version": "0.1.0",
+	"version": "0.2.2",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
 	"categories": [
-		"Other"
+		"Programming Languages",
+		"Snippets"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onCommand:extension.helloWorld",
+		"onCommand:terminalTest.createAndSend",
+		"onCommand:terminalTest.createTerminal"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"title": "Sapphira: Hello World"
+			},
+			{
+				"command": "terminalTest.createAndSend",
+				"title": "Sapphira: Create Terminal and Immediately Send"
+			},
+			{
+				"command": "terminalTest.createTerminal",
+				"title": "Sapphira: Create Terminal"
 			}
 		],
 		"languages": [
