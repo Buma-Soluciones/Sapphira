@@ -4,6 +4,22 @@
         "body": [
             "simular ${1:id} conf ${2:configuracion}"
         ],
-        "description": "Code snippet for an simular statement"
+        "description": "Snippet para declarar una simulacion"
+    },
+    "life": {
+        "prefix": "life",
+        "body": [
+            "life {",
+            "\testados {",
+            "\t\tMuerto \" \";",
+            "\t\tVivo \"*\";",
+            "\t};",
+            "\ttransiciones {",
+            "\t\tde Muerto a Vivo cuando ${1:cantidad} ${2:estado} ${3:condicion_extra};",
+            "\t\tde Vivo a Muerto cuando ${4:cantidad} ${2:estado} ${5:condicion_extra}.",
+            "\t};",
+            "};"
+        ],
+        "description": "Snippet para una estructura life"
     }
 }
